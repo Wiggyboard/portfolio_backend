@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post('/send', (req, res) => {
     console.log(req.body);
