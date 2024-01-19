@@ -42,13 +42,18 @@ app.post('/send', (req, res) => {
     });
 });
 
+// SSL certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/api.wiggyboard.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/api.wiggyboard.com/fullchain.pem', 'utf8');
+
 const credentials = {
-    key: fs.readFileSync('/etc/letsencrypt/live/api.wiggyboard.com/privkey.pem', 'utf8'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/api.wiggyboard.com/fullchain.pem', 'utf8')
+  key: privateKey,
+  cert: certificate
 };
 
+// Creates an HTTPS server
 const httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(port, 'https://api.wiggyboard.com', () => {
-    console.log(`Server is running at https://api.wiggyboard.com:${port}`);
+httpsServer.listen(port, () => {
+  console.log(`App running on port ${port} over HTTPS...`);
 });
