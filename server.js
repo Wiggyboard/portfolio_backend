@@ -20,6 +20,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/send', (req, res) => {
+    console.log(req.body);
+
     const { name, email, message } = req.body;
 
     const transporter = nodemailer.createTransport({
