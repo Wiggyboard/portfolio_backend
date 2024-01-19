@@ -49,6 +49,6 @@ const credentials = {
 
 const httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(port, 'api.wiggyboard.com', () => {
+httpsServer.listen(port, 'https://api.wiggyboard.com', () => {
     console.log(`Server is running at https://api.wiggyboard.com:${port}`);
 });
