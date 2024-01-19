@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const https = require('https');
+const cors = require('cors');
 require('dotenv').config();
-
 
 const app = express();
 const port = 4000;
+
+// Middleware
+app.use(cors());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
